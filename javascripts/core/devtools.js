@@ -88,7 +88,7 @@ dev.updateCosts = function() {
 
 dev.testTDCosts = function() {
     for (var i=1; i<9; i++) {
-        var timeDimStartCosts = [null, 1, 5, 100, 1000, "1e2350", "1e2650", "1e2900", "1e3300"]
+        var timeDimStartCosts = [null, 1, 5, 100, 1000, "10000", "1e10", "1e20", "1e40"]
         var dim = player["timeDimension"+i]
         if (dim.cost.gte(Number.MAX_VALUE)) {
             dim.cost = Decimal.pow(timeDimCostMults[i]*1.5, dim.bought).times(timeDimStartCosts[i])
