@@ -190,7 +190,7 @@ var player = {
         bought: 0
     },
     timeDimension5: {
-        cost: new Decimal("100000"),
+        cost: new Decimal("10000"),
         amount: new Decimal(0),
         power: new Decimal(1),
         bought: 0
