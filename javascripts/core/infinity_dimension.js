@@ -186,8 +186,8 @@ function resetInfDimensions() {
 
 }
 
-var infCostMults = [null, 1e3, 1e6, 1e8, 1e10, 1e15, 1e20, 1e25, 1e30]
-var infPowerMults = [null, 50, 30, 10, 5, 5, 5, 5, 5]
+var infCostMults = [null, 1e3, 1e5, 1e7, 1e9, 1e12, 1e16, 1e20, 1e25]
+var infPowerMults = [null, 5000, 3000, 1000, 500, 300, 100, 50, 5]
 
 function buyManyInfinityDimension(tier) {
   if (player.eterc8ids <= 0 && player.currentEternityChall == "eterc8") return false
@@ -198,7 +198,7 @@ function buyManyInfinityDimension(tier) {
   player.infinityPoints = player.infinityPoints.minus(dim.cost)
   dim.amount = dim.amount.plus(10);
   if (ECTimesCompleted("eterc12")) {
-      dim.cost = Decimal.round(dim.cost.times(Math.pow(infCostMults[tier], 1-ECTimesCompleted("eterc12")*0.008)))
+      dim.cost = Decimal.round(dim.cost.times(Math.pow(infCostMults[tier], 1-ECTimesCompleted("eterc12")*0.18)))
   } else {
       dim.cost = Decimal.round(dim.cost.times(infCostMults[tier]))
   }

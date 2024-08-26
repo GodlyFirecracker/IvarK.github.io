@@ -111,7 +111,7 @@ function updateTimeDimensions() {
 }
 
 var timeDimCostMults = [null, 3, 9, 27, 81, 243, 729, 2187, 6561]
-var timeDimStartCosts = [null, 1, 5, 100, 1000, "1e2350", "1e2650", "1e3000", "1e3350"]
+var timeDimStartCosts = [null, 1, 5, 100, 1000, "10000", "1e10", "1e20", "1e40"]
 function buyTimeDimension(tier) {
 
   var dim = player["timeDimension"+tier]
@@ -120,6 +120,11 @@ function buyTimeDimension(tier) {
 
   player.eternityPoints = player.eternityPoints.minus(dim.cost)
   dim.amount = dim.amount.plus(1);
+  if (ECTimesCompleted("eterc12")) {
+    dim.cost = Decimal.round(dim.cost.times(Math.pow(timeDimCostMults[tier], 1-ECTimesCompleted("eterc12")*0.02)))
+} else {
+    dim.cost = Decimal.round(dim.cost.times(timeDimCostMults[tier]))
+}
   dim.bought += 1
   dim.cost = Decimal.pow(timeDimCostMults[tier], dim.bought).times(timeDimStartCosts[tier])
   if (dim.cost.gte(Number.MAX_VALUE)) {
